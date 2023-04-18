@@ -13,32 +13,31 @@ import java.util.List;
 public class LetterCombinations {
 
 	public static void main(String[] args) {
-		List<String> letterCombinations = letterCombinations("");
+		LetterCombinations combinations = new LetterCombinations();
+		List<String> letterCombinations = combinations.letterCombinations("234");
 		for (String string : letterCombinations) {
-			System.out.println(string);
+			System.out.print(string + " ");
 		}
 
 	}
 
-	public static List<String> letterCombinations(String digits) {
-		List<String> combinations = new ArrayList<String>();
+	List<String> combinations = new ArrayList<String>();
+	public  List<String> letterCombinations(String digits) {
 		if (digits != null && !digits.isBlank() ) {
-			getCombo(digits, new StringBuffer(), combinations, 0);
+			getCombo(digits, "",  0);
 		}
 		return combinations;
 	}
 
-	private static void getCombo(String digits, StringBuffer buffer, List<String> combinations, int index) {
+	private  void getCombo(String digits, String letters,  int index) {
 		if (digits.length() == index) {
-			combinations.add(buffer.toString());
+			combinations.add(letters);
 		} else if (index < digits.length()){
 			char digit = digits.charAt(index);
 			String[] lettersForNumber = getLettersForNumber(Character.getNumericValue(digit));
 			for (int i = 0; i < lettersForNumber.length; i++) {
 				String string = lettersForNumber[i];
-				buffer.append(string);
-				getCombo(digits, buffer, combinations, index + 1);
-				buffer.deleteCharAt(buffer.length() - 1);
+				getCombo(digits, letters + string, index + 1);
 			}
 		}
 	}
