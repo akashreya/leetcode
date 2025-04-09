@@ -1,4 +1,4 @@
-package com.leetcode.akashreya.easy;
+package com.akashreya.leetcode.easy;
 
 import java.util.Stack;
 
